@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamy Arteira | Artesanato Profissional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- Variáveis de Cores (Paleta Vinho Dark) --- */
+        :root {
+            --fundo-principal: #12080a; /* Quase preto com toque vinho */
+            --fundo-secundario: #1f0d12; /* Vinho profundo para seções */
+            --vinho-destaque: #8b1e32; /* Vinho vivo para botões */
+            --rosa-detalhe: #e8a0b0; /* Rosa suave para contrastes */
+            --texto-claro: #ffffff;
+            --texto-suave: #d1c2c5;
+        }
+
+        /* --- Reset e Global --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--fundo-principal);
+            color: var(--texto-claro);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* --- Cabeçalho --- */
+        header {
+            background-color: rgba(18, 8, 10, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(139, 30, 50, 0.3);
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--rosa-detalhe);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--texto-claro);
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--vinho-destaque); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(18, 8, 10, 0.7), rgba(18, 8, 10, 0.9)), 
+                        url('https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 15px;
+            color: var(--texto-claro);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: var(--texto-suave);
+        }
+
+        /* --- Botões --- */
+        .btn {
+            padding: 15px 40px;
+            background-color: var(--vinho-destaque);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 30, 50, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #a5253c;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(139, 30, 50, 0.6);
+        }
+
+        /* --- Seção de Produtos --- */
+        .produtos {
+            padding: 100px 8%;
+            background-color: var(--fundo-principal);
+        }
+
+        .produtos h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 50px;
+            color: var(--rosa-detalhe);
+        }
+
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--fundo-secundario);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            border-color: var(--vinho-destaque);
+        }
+
+        .card img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: 0.5s;
+        }
+
+        .card:hover img { filter: grayscale(0%); }
+
+        .card-info { padding: 25px; text-align: center; }
+
+        .card-info h3 { margin-bottom: 10px; font-size: 1.5rem; }
+
+        .card-info p { color: var(--texto-suave); font-size: 0.9rem; margin-bottom: 20px; }
+
+        /* --- Seção Encomenda (WhatsApp) --- */
+        .encomenda {
+            padding: 100px 8%;
+            background-color: var(--fundo-secundario);
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 550px;
+            margin: 0 auto;
+            background: var(--fundo-principal);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #2a141a;
+            border: 1px solid #3d1e25;
+            color: white;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-container input:focus, .form-container textarea:focus {
+            outline: none;
+            border-color: var(--vinho-destaque);
+        }
+
+        /* --- Animações --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--texto-suave);
+            border-top: 1px solid rgba(139, 30, 50, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">Mamy Arteira</a>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#produtos">Criações</a></li>
+                <li><a href="#contato">Encomendas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1 class="reveal">Mamy Arteira</h1>
+        <p class="reveal">Exclusividade e carinho em cada ponto. Transformando ideias em arte artesanal de luxo.</p>
+        <a href="#produtos" class="btn reveal">Ver Coleção</a>
+    </section>
+
+    <section id="produtos" class="produtos">
+        <h2 class="reveal">Peças em Destaque</h2>
+        <div class="grid-produtos">
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1606722590583-6951b5ea92ad?auto=format&fit=crop&w=600&q=80" alt="Bolsa">
+                <div class="card-info">
+                    <h3>Bolsas Premium</h3>
+                    <p>Modelos exclusivos feitos sob medida com fios selecionados.</p>
+                    <button class="btn" style="padding: 10px 20px;" onclick="document.getElementById('mensagem').value='Olá! Gostaria de saber mais sobre as Bolsas Premium.'; window.location.href='#contato';">Ver Mais</button>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&w=600&q=80" alt="Decoração">
+                <div class="card-info">
+                    <h3>Decoração Boho</h3>
+                    <p>Macramês e peças decorativas que trazem alma para sua casa.</p>
+                    <button class="btn" style="padding: 10px 20px;" onclick="document.getElementById('mensagem').value='Olá! Gostaria de saber mais sobre a Decoração Boho.'; window.location.href='#contato';">Ver Mais</button>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1612030043867-00994cc53ea3?auto=format&fit=crop&w=600&q=80" alt="Acessórios">
+                <div class="card-info">
+                    <h3>Acessórios Únicos</h3>
+                    <p>Pequenos detalhes que fazem a diferença no seu visual.</p>
+                    <button class="btn" style="padding: 10px 20px;" onclick="document.getElementById('mensagem').value='Olá! Gostaria de saber mais sobre os Acessórios Únicos.'; window.location.href='#contato';">Ver Mais</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="encomenda">
+        <div class="form-container reveal">
+            <h2 style="margin-bottom: 20px; color: var(--rosa-detalhe);">Peça sua Arte</h2>
+            <p style="margin-bottom: 30px; font-size: 0.9rem;">Preencha os campos abaixo para iniciar seu atendimento personalizado via WhatsApp.</p>
+            
+            <input type="text" id="nome" placeholder="Seu Nome completo">
+            <textarea id="mensagem" rows="4" placeholder="Descreva o que você deseja (cores, modelos, etc)"></textarea>
+            
+            <button type="button" class="btn" style="width: 100%;" onclick="enviarZap()">
+                Finalizar Pedido no WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mamy Arteira | Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função do WhatsApp
+        function enviarZap() {
+            const numero = "5511988664236"; // Seu número configurado
+            const nome = document.getElementById('nome').value;
+            const msg = document.getElementById('mensagem').value;
+
+            if(!nome || !msg) {
+                alert("Por favor, preencha seu nome e a mensagem.");
+                return;
+            }
+
+            const texto = `Olá Mamy Arteira! Meu nome é *${nome}*.\n\n*Gostaria de encomendar:* ${msg}`;
+            const link = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+            
+            window.open(link, '_blank');
+        }
+
+        // Animação de Scroll (Reveal)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        // Executa uma vez no início para mostrar o que já está na tela
+        reveal();
+    </script>
+
+</body>
+</html>
